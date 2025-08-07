@@ -8,7 +8,7 @@ const products = [
     "description": "Self-paced or live sessions for school, college, and competitive exams",
     "format": "Video/Live Class",
     "audience": "",
-    "price": "starting from ₹2,999",
+    "price": "Starts from ₹2,999",
     "category": "Educational"
   },
   {
@@ -17,7 +17,7 @@ const products = [
     "description": "Focused topics: Organic/Physical/Inorganic, Spectroscopy, Drug Design etc.",
     "format": "Zoom/Google Meet",
     "audience": "",
-    "price": "starting from ₹1,499",
+    "price": "Starts from ₹1,499",
     "category": "Educational"
   },
   {
@@ -26,7 +26,7 @@ const products = [
     "description": "Visual tutorials for UG/PG chemistry experiments",
     "format": "Pre-recorded",
     "audience": "",
-    "price": "starting from ₹499",
+    "price": "Starts from ₹499",
     "category": "Educational"
   },
   {
@@ -35,7 +35,7 @@ const products = [
     "description": "Topic-wise question sets with solutions and notes",
     "format": "PDF/eBook",
     "audience": "",
-    "price": "starting from ₹299",
+    "price": "Starts from ₹299",
     "category": "Educational"
   },
   {
@@ -44,7 +44,7 @@ const products = [
     "description": "Guidance for GATE, CSIR-NET, research, or thesis work",
     "format": "Personalized",
     "audience": "",
-    "price": "starting from ₹999/hour",
+    "price": "Starts from ₹999/hour",
     "category": "Educational"
   },
   {
@@ -53,7 +53,7 @@ const products = [
     "description": "Small lab kits for school/college experiments",
     "format": "",
     "audience": "Students, Hobbyists",
-    "price": "Starting from ₹1,299",
+    "price": "Starts from ₹1,299",
     "category": "Physical"
   },
   {
@@ -62,7 +62,7 @@ const products = [
     "description": "Pre-mixed solutions for common titrations, colorimetric tests",
     "format": "",
     "audience": "Schools & Colleges",
-    "price": "Starting from ₹999",
+    "price": "Starts from ₹999",
     "category": "Physical"
   },
   {
@@ -71,7 +71,7 @@ const products = [
     "description": "Creative, high-quality printable charts/posters",
     "format": "Digital/Physical",
     "audience": "",
-    "price": "Starting from ₹199",
+    "price": "Starts from ₹199",
     "category": "Physical"
   },
   {
@@ -107,7 +107,7 @@ const products = [
     "description": "Custom mobile and web application development for chemistry education and research tools",
     "format": "Mobile/Web App",
     "audience": "Institutions, Educators",
-    "price": "Starting from ₹5,000",
+    "price": "Starts from ₹5,000",
     "category": "Service"
   }
 ];
