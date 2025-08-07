@@ -1,6 +1,6 @@
 // Chemistry Professor Hub JavaScript
 
-// Product data
+// Product data with expanded services
 const products = [
   {
     "id": "online-chemistry-courses",
@@ -66,15 +66,6 @@ const products = [
     "category": "Physical"
   },
   {
-    "id": "paper-editing",
-    "name": "Research Paper Editing",
-    "description": "Proofreading, formatting, and suggestions for thesis/paper writing",
-    "format": "",
-    "audience": "M.Sc./PhD Scholars",
-    "price": "₹799",
-    "category": "Service"
-  },
-  {
     "id": "periodic-poster",
     "name": "Periodic Table Posters",
     "description": "Creative, high-quality printable charts/posters",
@@ -84,12 +75,39 @@ const products = [
     "category": "Physical"
   },
   {
+    "id": "paper-editing",
+    "name": "Research Paper Editing",
+    "description": "Proofreading, formatting, and suggestions for thesis/paper writing",
+    "format": "",
+    "audience": "M.Sc./PhD Scholars",
+    "price": "₹799",
+    "category": "Service"
+  },
+  {
     "id": "mechanism-app",
     "name": "Organic Mechanism App",
     "description": "Interactive app to visualize reaction mechanisms",
     "format": "",
     "audience": "Students & Teachers",
     "price": "₹599",
+    "category": "Service"
+  },
+  {
+    "id": "ppt-designer",
+    "name": "PPT Designer",
+    "description": "Professional presentation design for chemistry topics, lectures, and research presentations",
+    "format": "Custom Design",
+    "audience": "Students, Teachers, Researchers",
+    "price": "₹1,000",
+    "category": "Service"
+  },
+  {
+    "id": "app-creation",
+    "name": "App Creation",
+    "description": "Custom mobile and web application development for chemistry education and research tools",
+    "format": "Mobile/Web App",
+    "audience": "Institutions, Educators",
+    "price": "Starting from ₹5,000",
     "category": "Service"
   }
 ];
@@ -105,16 +123,14 @@ let filteredProducts = [...products];
 let currentFilter = 'all';
 let currentSearch = '';
 
-// DOM elements
+// DOM elements - will be initialized after DOM loads
 let productsGrid, productsCount, noResults, searchInput, filterButtons, modal, modalBackdrop, modalClose;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM loaded, initializing app...');
   initializeElements();
   setupEventListeners();
   renderProducts();
-  updateStaticContactLinks();
 });
 
 // Initialize DOM elements
@@ -127,37 +143,19 @@ function initializeElements() {
   modal = document.getElementById('product-modal');
   modalBackdrop = document.getElementById('modal-backdrop');
   modalClose = document.getElementById('modal-close');
-  
-  console.log('Elements initialized:', {
-    productsGrid: !!productsGrid,
-    searchInput: !!searchInput,
-    filterButtons: filterButtons.length,
-    modal: !!modal
-  });
 }
 
 // Set up event listeners
 function setupEventListeners() {
   // Search functionality
   if (searchInput) {
-    searchInput.addEventListener('input', function(e) {
-      console.log('Search input:', e.target.value);
-      handleSearch(e);
-    });
-    searchInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        handleSearch(e);
-      }
-    });
+    searchInput.addEventListener('input', handleSearch);
+    searchInput.addEventListener('keyup', handleSearch);
   }
   
   // Filter buttons
-  filterButtons.forEach((button, index) => {
-    button.addEventListener('click', function(e) {
-      console.log('Filter button clicked:', e.target.dataset.category);
-      handleFilterClick(e);
-    });
+  filterButtons.forEach(button => {
+    button.addEventListener('click', handleFilterClick);
   });
   
   // Modal event listeners
@@ -174,55 +172,54 @@ function setupEventListeners() {
       closeModal();
     }
   });
-  
-  console.log('Event listeners setup complete');
 }
 
 // Handle search input
 function handleSearch(e) {
   currentSearch = e.target.value.toLowerCase().trim();
-  console.log('Searching for:', currentSearch);
   filterProducts();
 }
 
 // Handle filter button clicks
 function handleFilterClick(e) {
   e.preventDefault();
-  const category = e.target.dataset.category;
-  currentFilter = category;
+  const button = e.target;
+  const category = button.dataset.category;
   
-  console.log('Filter changed to:', category);
+  // Update current filter
+  currentFilter = category;
   
   // Update active button
   filterButtons.forEach(btn => btn.classList.remove('active'));
-  e.target.classList.add('active');
+  button.classList.add('active');
   
+  // Filter and render products
   filterProducts();
 }
 
 // Filter products based on current search and category filter
 function filterProducts() {
   filteredProducts = products.filter(product => {
-    const matchesSearch = currentSearch === '' || 
+    // Check search match
+    const searchMatch = currentSearch === '' || 
       product.name.toLowerCase().includes(currentSearch) ||
       product.description.toLowerCase().includes(currentSearch) ||
-      product.category.toLowerCase().includes(currentSearch);
+      product.category.toLowerCase().includes(currentSearch) ||
+      (product.format && product.format.toLowerCase().includes(currentSearch)) ||
+      (product.audience && product.audience.toLowerCase().includes(currentSearch));
     
-    const matchesFilter = currentFilter === 'all' || product.category === currentFilter;
+    // Check category filter match
+    const categoryMatch = currentFilter === 'all' || product.category === currentFilter;
     
-    return matchesSearch && matchesFilter;
+    return searchMatch && categoryMatch;
   });
   
-  console.log(`Filtered products: ${filteredProducts.length} of ${products.length}`);
   renderProducts();
 }
 
 // Render products to the grid
 function renderProducts() {
-  if (!productsGrid || !productsCount || !noResults) {
-    console.error('Required elements not found');
-    return;
-  }
+  if (!productsGrid || !productsCount || !noResults) return;
   
   // Update products count
   productsCount.textContent = filteredProducts.length;
@@ -240,12 +237,10 @@ function renderProducts() {
   productsGrid.innerHTML = '';
   
   // Render filtered products
-  filteredProducts.forEach((product, index) => {
+  filteredProducts.forEach(product => {
     const productCard = createProductCard(product);
     productsGrid.appendChild(productCard);
   });
-  
-  console.log(`Rendered ${filteredProducts.length} products`);
 }
 
 // Create a product card element
@@ -253,6 +248,7 @@ function createProductCard(product) {
   const card = document.createElement('div');
   card.className = 'product-card';
   card.dataset.productId = product.id;
+  card.dataset.category = product.category;
   
   // Get category class for styling
   const categoryClass = product.category.toLowerCase();
@@ -280,7 +276,6 @@ function createProductCard(product) {
   card.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log('Product card clicked:', product.name);
     openModal(product);
   });
   
@@ -289,12 +284,7 @@ function createProductCard(product) {
 
 // Open product details modal
 function openModal(product) {
-  if (!modal) {
-    console.error('Modal element not found');
-    return;
-  }
-  
-  console.log('Opening modal for:', product.name);
+  if (!modal) return;
   
   // Populate modal content
   const modalTitle = document.getElementById('modal-title');
@@ -333,8 +323,8 @@ function openModal(product) {
     }
   }
   
-  // Update contact button URLs with current contact information
-  updateModalContactButtons();
+  // Update contact button links with current product context
+  updateContactButtons(product);
   
   // Show modal
   modal.classList.remove('hidden');
@@ -348,68 +338,41 @@ function openModal(product) {
   }, 100);
 }
 
-// Update contact buttons in modal with current contact information
-function updateModalContactButtons() {
-  const emailBtn = modal.querySelector('a[href^="mailto:"]');
-  const phoneBtn = modal.querySelector('a[href^="tel:"]');
-  const whatsappBtn = modal.querySelector('a[href^="https://wa.me/"]');
+// Update contact buttons with product context
+function updateContactButtons(product) {
+  const emailBtn = modal.querySelector('a[href*="mailto:"]');
+  const callBtn = modal.querySelector('a[href*="tel:"]');
+  const whatsappBtn = modal.querySelector('a[href*="wa.me"]');
   
   if (emailBtn) {
-    emailBtn.href = `mailto:${contact.email}`;
-    console.log('Updated email button:', emailBtn.href);
+    const subject = encodeURIComponent(`Inquiry about ${product.name}`);
+    const body = encodeURIComponent(`Hello,\n\nI am interested in learning more about "${product.name}".\n\nPrice: ${product.price}\nCategory: ${product.category}\n\nPlease provide more details.\n\nThank you!`);
+    emailBtn.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
   }
   
-  if (phoneBtn) {
-    phoneBtn.href = `tel:${contact.phone}`;
-    console.log('Updated phone button:', phoneBtn.href);
+  if (callBtn) {
+    callBtn.href = `tel:${contact.phone}`;
   }
   
   if (whatsappBtn) {
-    // Remove the + and - from phone number for WhatsApp URL
-    const whatsappNumber = contact.phone.replace(/[\+\-]/g, '');
-    whatsappBtn.href = `https://wa.me/${whatsappNumber}`;
-    console.log('Updated WhatsApp button:', whatsappBtn.href);
+    const message = encodeURIComponent(`Hello! I'm interested in "${product.name}" (${product.price}). Can you provide more details?`);
+    whatsappBtn.href = `https://wa.me/${contact.phone.replace(/[^0-9]/g, '')}?text=${message}`;
   }
-}
-
-// Update static contact links in the footer
-function updateStaticContactLinks() {
-  // Update contact section links (not in modal)
-  const emailLinks = document.querySelectorAll('a[href^="mailto:"]:not(.contact-btn)');
-  const phoneLinks = document.querySelectorAll('a[href^="tel:"]:not(.contact-btn)');
-  const whatsappLinks = document.querySelectorAll('a[href^="https://wa.me/"]:not(.contact-btn)');
-  
-  emailLinks.forEach(link => {
-    link.href = `mailto:${contact.email}`;
-    console.log('Updated static email link:', link.href);
-  });
-  
-  phoneLinks.forEach(link => {
-    link.href = `tel:${contact.phone}`;
-    console.log('Updated static phone link:', link.href);
-  });
-  
-  whatsappLinks.forEach(link => {
-    const whatsappNumber = contact.phone.replace(/[\+\-]/g, '');
-    link.href = `https://wa.me/${whatsappNumber}`;
-    console.log('Updated static WhatsApp link:', link.href);
-  });
 }
 
 // Close modal
 function closeModal() {
   if (!modal) return;
   
-  console.log('Closing modal');
   modal.classList.add('hidden');
   document.body.style.overflow = '';
 }
 
 // Add keyboard navigation for accessibility
 document.addEventListener('keydown', function(e) {
-  if (!modal || modal.classList.contains('hidden')) return;
+  if (!modal) return;
   
-  if (e.key === 'Tab') {
+  if (e.key === 'Tab' && !modal.classList.contains('hidden')) {
     // Keep focus within modal
     const focusableElements = modal.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -427,6 +390,36 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// Smooth scrolling utility
+function smoothScrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// Smooth scrolling to contact section
+function scrollToContact() {
+  const contactSection = document.querySelector('.contact-section');
+  if (contactSection) {
+    contactSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+}
+
+// Analytics and tracking functions (placeholder for future implementation)
+function trackProductView(productId) {
+  console.log(`Product viewed: ${productId}`);
+  // Add analytics tracking here
+}
+
+function trackContactAction(action, productId = null) {
+  console.log(`Contact action: ${action}${productId ? ` for product: ${productId}` : ''}`);
+  // Add analytics tracking here
+}
+
 // Error handling
 function handleError(error) {
   console.error('Chemistry Professor Hub Error:', error);
@@ -435,24 +428,17 @@ function handleError(error) {
       <div class="error-state">
         <h3>Oops! Something went wrong</h3>
         <p>Unable to load products. Please try refreshing the page.</p>
+        <button onclick="location.reload()" class="btn btn--primary">Refresh Page</button>
       </div>
     `;
   }
 }
 
-// Contact button analytics tracking (placeholder for future implementation)
-function trackContactClick(method, product = null) {
-  console.log(`Contact initiated via ${method}`, product ? `for product: ${product.name}` : '');
-  // Future: Add analytics tracking here
-}
+// Initialize error handling
+window.addEventListener('error', function(e) {
+  handleError(e.error);
+});
 
-// Debug function to check application state
-function debugApp() {
-  console.log('Application Debug Info:', {
-    totalProducts: products.length,
-    filteredProducts: filteredProducts.length,
-    currentFilter: currentFilter,
-    currentSearch: currentSearch,
-    contactInfo: contact
-  });
-}
+window.addEventListener('unhandledrejection', function(e) {
+  handleError(e.reason);
+});
