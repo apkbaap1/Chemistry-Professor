@@ -1303,7 +1303,7 @@ select.form-control {
   }
 }
 .app-header, .app-footer {
-  background-color: #B0E0E6; /* Chemistry-themed blue */
+  background-color: #E1EBEE; /* Chemistry-themed blue */
   display: flex;
   align-items: center;
   padding: 10px 20px;
