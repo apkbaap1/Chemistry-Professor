@@ -1317,13 +1317,13 @@ select.form-control {
 }
 
 .app-logo {
-  height: 100px; /* Adjust as needed */
+  height: 200px; /* Adjust as needed */
   width: auto;
 }
 
 @media (max-width: 600px) {
   .app-logo {
-    height: 40px;
+    height: 120px;
   }
   .app-header, .app-footer {
     flex-direction: column;
