@@ -743,7 +743,7 @@ select.form-control {
 /* Header Styles */
 .header {
   background: linear-gradient(135deg, var(--color-bg-1), var(--color-bg-8));
-  padding: var(--space-32) 0;
+  padding: var(--space-42) 0;
   margin-bottom: var(--space-32);
 }
 
@@ -1303,7 +1303,7 @@ select.form-control {
   }
 }
 .app-header, .app-footer {
-  background-color: #0a3d62; /* Chemistry-themed blue */
+  background-color: #B0E0E6; /* Chemistry-themed blue */
   display: flex;
   align-items: center;
   padding: 10px 20px;
