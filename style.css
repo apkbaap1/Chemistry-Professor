@@ -965,6 +965,32 @@ select.form-control {
   color: var(--color-primary-hover);
 }
 
+/* Service Highlight - New Services */
+.product-card[data-category="Service"] {
+  position: relative;
+}
+
+.product-card[data-product-id="ppt-designer"],
+.product-card[data-product-id="app-creation"] {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-surface), var(--color-bg-1));
+}
+
+.product-card[data-product-id="ppt-designer"]::before,
+.product-card[data-product-id="app-creation"]::before {
+  content: "NEW";
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  background-color: var(--color-error);
+  color: white;
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  z-index: 1;
+}
+
 /* No Results */
 .no-results {
   text-align: center;
@@ -1000,92 +1026,45 @@ select.form-control {
 
 .contact-content p {
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-20);
   font-size: var(--font-size-lg);
 }
 
 .contact-info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--space-20);
-  margin-bottom: var(--space-20);
-  text-align: left;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .contact-item {
-  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-size-md);
   padding: var(--space-16);
+  background-color: var(--color-surface);
   border-radius: var(--radius-base);
   border: 1px solid var(--color-card-border);
-  transition: all var(--duration-normal) var(--ease-standard);
 }
 
-.contact-item:hover {
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-primary);
-}
-
-.contact-label {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
+.contact-item strong {
+  color: var(--color-primary);
+  display: block;
   margin-bottom: var(--space-8);
-}
-
-.contact-icon {
-  font-size: var(--font-size-lg);
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-label strong {
-  color: var(--color-text);
   font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-md);
 }
 
 .contact-link {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-md);
   transition: color var(--duration-fast) var(--ease-standard);
-  display: block;
 }
 
 .contact-link:hover {
   color: var(--color-primary-hover);
   text-decoration: underline;
-}
-
-.whatsapp-link {
-  color: var(--color-success);
-}
-
-.whatsapp-link:hover {
-  color: var(--color-success);
-  opacity: 0.8;
-}
-
-.contact-hours {
-  background-color: var(--color-surface);
-  padding: var(--space-12);
-  border-radius: var(--radius-base);
-  border: 1px solid var(--color-card-border);
-  display: inline-block;
-}
-
-.contact-hours p {
-  margin: 0;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.contact-hours strong {
-  color: var(--color-text);
 }
 
 /* Modal Styles */
@@ -1220,6 +1199,7 @@ select.form-control {
 .modal-footer {
   padding: var(--space-20) var(--space-24);
   border-top: 1px solid var(--color-card-border-inner);
+  background-color: var(--color-bg-1);
 }
 
 .contact-buttons {
@@ -1230,29 +1210,15 @@ select.form-control {
 }
 
 .contact-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-  text-decoration: none;
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+  font-weight: var(--font-weight-medium);
   transition: all var(--duration-normal) var(--ease-standard);
-  min-width: 140px;
-  justify-content: center;
 }
 
-.contact-btn .btn-icon {
-  font-size: var(--font-size-md);
-}
-
-.whatsapp-btn {
-  background-color: var(--color-bg-3);
-  border-color: var(--color-success);
-  color: var(--color-success);
-}
-
-.whatsapp-btn:hover {
-  background-color: var(--color-success);
-  color: var(--color-surface);
-  border-color: var(--color-success);
+.contact-btn:hover {
+  transform: translateY(-1px);
 }
 
 /* Responsive Design */
@@ -1298,17 +1264,18 @@ select.form-control {
     gap: var(--space-16);
   }
   
+  .modal-content {
+    margin: var(--space-8);
+    max-height: calc(100vh - 32px);
+  }
+  
   .contact-buttons {
     flex-direction: column;
   }
   
   .contact-btn {
-    width: 100%;
-  }
-  
-  .modal-content {
-    margin: var(--space-8);
-    max-height: calc(100vh - 32px);
+    flex: none;
+    min-width: auto;
   }
 }
 
@@ -1327,11 +1294,11 @@ select.form-control {
     align-self: flex-start;
   }
   
-  .contact-section {
-    padding: var(--space-20);
-  }
-  
   .contact-item {
     padding: var(--space-12);
+  }
+  
+  .modal-footer {
+    padding: var(--space-16);
   }
 }
