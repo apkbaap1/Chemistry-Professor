@@ -1302,3 +1302,31 @@ select.form-control {
     padding: var(--space-16);
   }
 }
+.app-header, .app-footer {
+  background-color: #0a3d62; /* Chemistry-themed blue */
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+  justify-content: space-between;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.app-logo {
+  height: 50px; /* Adjust as needed */
+  width: auto;
+}
+
+@media (max-width: 600px) {
+  .app-logo {
+    height: 40px;
+  }
+  .app-header, .app-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
