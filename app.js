@@ -8,7 +8,7 @@ const products = [
     "description": "Self-paced or live sessions for school, college, and competitive exams",
     "format": "Video/Live Class",
     "audience": "",
-    "price": "₹2,999",
+    "price": "starting from ₹2,999",
     "category": "Educational"
   },
   {
@@ -17,7 +17,7 @@ const products = [
     "description": "Focused topics: Organic/Physical/Inorganic, Spectroscopy, Drug Design etc.",
     "format": "Zoom/Google Meet",
     "audience": "",
-    "price": "₹1,499",
+    "price": "starting from ₹1,499",
     "category": "Educational"
   },
   {
@@ -26,7 +26,7 @@ const products = [
     "description": "Visual tutorials for UG/PG chemistry experiments",
     "format": "Pre-recorded",
     "audience": "",
-    "price": "₹499",
+    "price": "starting from ₹499",
     "category": "Educational"
   },
   {
@@ -35,7 +35,7 @@ const products = [
     "description": "Topic-wise question sets with solutions and notes",
     "format": "PDF/eBook",
     "audience": "",
-    "price": "₹299",
+    "price": "starting from ₹299",
     "category": "Educational"
   },
   {
@@ -44,7 +44,7 @@ const products = [
     "description": "Guidance for GATE, CSIR-NET, research, or thesis work",
     "format": "Personalized",
     "audience": "",
-    "price": "₹999/hour",
+    "price": "starting from ₹999/hour",
     "category": "Educational"
   },
   {
@@ -53,7 +53,7 @@ const products = [
     "description": "Small lab kits for school/college experiments",
     "format": "",
     "audience": "Students, Hobbyists",
-    "price": "₹1,299",
+    "price": "Starting from ₹1,299",
     "category": "Physical"
   },
   {
@@ -62,16 +62,16 @@ const products = [
     "description": "Pre-mixed solutions for common titrations, colorimetric tests",
     "format": "",
     "audience": "Schools & Colleges",
-    "price": "₹999",
+    "price": "Starting from ₹999",
     "category": "Physical"
   },
   {
-    "id": "periodic-poster",
+    "id": "Designing-posters/Brochures/Logos",
     "name": "Periodic Table Posters",
     "description": "Creative, high-quality printable charts/posters",
     "format": "Digital/Physical",
     "audience": "",
-    "price": "₹199",
+    "price": "Starting from ₹199",
     "category": "Physical"
   },
   {
@@ -80,7 +80,7 @@ const products = [
     "description": "Proofreading, formatting, and suggestions for thesis/paper writing",
     "format": "",
     "audience": "M.Sc./PhD Scholars",
-    "price": "₹799",
+    "price": "Starts from ₹799",
     "category": "Service"
   },
   {
@@ -89,7 +89,7 @@ const products = [
     "description": "Interactive app to visualize reaction mechanisms",
     "format": "",
     "audience": "Students & Teachers",
-    "price": "₹599",
+    "price": "Starts from ₹599",
     "category": "Service"
   },
   {
