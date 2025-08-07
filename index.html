@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Professor Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="header-title">Chemistry Professor Hub</h1>
+                    <p class="header-subtitle">Comprehensive Chemistry Education Resources & Services</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Navigation/Filter Section -->
+            <section class="filters-section">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        class="form-control search-input" 
+                        placeholder="Search products by name or description..."
+                    >
+                </div>
+                
+                <div class="filters-container">
+                    <h3 class="filters-title">Filter by Category</h3>
+                    <div class="filter-buttons">
+                        <button class="btn btn--secondary filter-btn active" data-category="all">All Products</button>
+                        <button class="btn btn--secondary filter-btn" data-category="Educational">Educational</button>
+                        <button class="btn btn--secondary filter-btn" data-category="Physical">Physical</button>
+                        <button class="btn btn--secondary filter-btn" data-category="Service">Service</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Display Grid -->
+            <section class="products-section">
+                <div class="products-header">
+                    <h2>Chemistry Products & Services</h2>
+                    <div class="products-count">
+                        <span id="products-count">10</span> products available
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+                
+                <div class="no-results hidden" id="no-results">
+                    <div class="no-results-content">
+                        <h3>No products found</h3>
+                        <p>Try adjusting your search or filter criteria</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact-section">
+                <div class="contact-content">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions about our chemistry resources? Contact us for personalized assistance.</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-label">
+                                <span class="contact-icon">✉️</span>
+                                <strong>Email:</strong>
+                            </div>
+                            <a href="mailto:ashokk.taduri@gmail.com" class="contact-link">ashokk.taduri@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">
+                                <span class="contact-icon">📞</span>
+                                <strong>Phone:</strong>
+                            </div>
+                            <a href="tel:+919030726907" class="contact-link">+91-9030726907</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-label">
+                                <span class="contact-icon">💬</span>
+                                <strong>WhatsApp:</strong>
+                            </div>
+                            <a href="https://wa.me/919030726907" target="_blank" class="contact-link whatsapp-link">
+                                Chat with us on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-hours">
+                        <p><strong>Available:</strong> Mon-Sat, 9 AM - 6 PM IST</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Product Details Modal -->
+    <div class="modal hidden" id="product-modal">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <button class="modal-close" id="modal-close" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info">
+                    <p class="modal-description" id="modal-description"></p>
+                    
+                    <div class="modal-details">
+                        <div class="detail-item" id="modal-format-container">
+                            <strong>Format:</strong> <span id="modal-format"></span>
+                        </div>
+                        <div class="detail-item" id="modal-audience-container">
+                            <strong>Target Audience:</strong> <span id="modal-audience"></span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Category:</strong> <span id="modal-category" class="category-badge"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-price">
+                        <div class="price-label">Price</div>
+                        <div class="price-value" id="modal-price"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="contact-buttons">
+                    <a href="mailto:ashokk.taduri@gmail.com" class="btn btn--primary contact-btn">
+                        <span class="btn-icon">✉️</span>
+                        Contact via Email
+                    </a>
+                    <a href="tel:+919030726907" class="btn btn--secondary contact-btn">
+                        <span class="btn-icon">📞</span>
+                        Call Now
+                    </a>
+                    <a href="https://wa.me/919030726907" target="_blank" class="btn btn--outline contact-btn whatsapp-btn">
+                        <span class="btn-icon">💬</span>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
